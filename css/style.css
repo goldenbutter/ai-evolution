@@ -717,7 +717,7 @@ body::before {
   font-family: 'Outfit', sans-serif;
   font-weight: 700;
   font-size: clamp(2.2rem, 4.5vw, 3.2rem);
-  line-height: 1.15;
+  line-height: 1;
   letter-spacing: -0.02em;
   color: var(--text);
   margin-bottom: 1.6rem;
@@ -726,7 +726,6 @@ body::before {
   font-style: italic;
   font-weight: 600;
   color: var(--accent);
-  display: block;
   font-size: 0.85em;
 }
 
