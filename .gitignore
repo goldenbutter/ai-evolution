@@ -1,0 +1,14 @@
+# IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Claude Code
+CLAUDE.md
+
+# Unused images
+image/avatar-2.jpg
