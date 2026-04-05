@@ -750,8 +750,8 @@ body::before {
     position: relative;
     bottom: auto;
     left: auto;
-    height: 52vw;
-    max-height: 280px;
+    height: 70vw;
+    max-height: 380px;
     width: 100%;
     display: flex;
     justify-content: flex-start;
@@ -762,7 +762,7 @@ body::before {
   .hero-photo img {
     height: 100%;
     width: auto;
-    max-height: 280px;
+    max-height: 380px;
     object-position: top center;
     -webkit-mask-image:
       linear-gradient(to right, transparent 0%, black 10%, black 50%, transparent 100%),
@@ -795,5 +795,5 @@ body::before {
 
 @media (max-width: 480px) {
   .tip-card { flex-direction: column; }
-  .hero-photo { height: 55vw; }
+  .hero-photo { height: 65vw; max-height: 340px; }
 }
