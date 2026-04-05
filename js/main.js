@@ -12,7 +12,7 @@ setTimeout(() => {
   });
 }, 100);
 
-const sections = ['s0','s1','s2','s3','s4','s5'];
+const sections = ['s0','s1','s2','s3','s4','s5','s6'];
 const dots = document.querySelectorAll('.nav-dot');
 const sectionObserver = new IntersectionObserver((entries) => {
   entries.forEach(e => {
