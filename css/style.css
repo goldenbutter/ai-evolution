@@ -748,9 +748,11 @@ body::before {
   }
   .hero-photo {
     position: relative;
-    bottom: auto;
+    top: auto;
     left: auto;
+    transform: none;
     width: 80%;
+    height: auto;
     padding-top: 1rem;
     overflow: visible;
   }
