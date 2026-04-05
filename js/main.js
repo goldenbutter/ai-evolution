@@ -28,3 +28,13 @@ function scrollToSection(i) {
   const el = document.getElementById(sections[i]);
   if (el) el.scrollIntoView({ behavior: 'smooth' });
 }
+
+// Topbar: show after scrolling past the hero
+const topbar = document.getElementById('topbar');
+const hero = document.getElementById('s0');
+if (topbar && hero) {
+  const topbarObserver = new IntersectionObserver(([e]) => {
+    topbar.classList.toggle('visible', !e.isIntersecting);
+  }, { threshold: 0 });
+  topbarObserver.observe(hero);
+}
