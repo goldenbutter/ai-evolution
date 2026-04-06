@@ -885,7 +885,7 @@ body::before {
 
 .toast.show {
   opacity: 1;
-  max-height: 60px;
+  max-height: 80px;
   padding: 0.8rem 1.2rem;
   margin-top: 0.2rem;
 }
@@ -907,7 +907,7 @@ body::before {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 0.9rem;
   color: var(--text);
-  white-space: nowrap;
+  white-space: normal;
 }
 
 /* COPYRIGHT */
