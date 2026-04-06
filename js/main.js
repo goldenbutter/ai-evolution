@@ -29,6 +29,43 @@ function scrollToSection(i) {
   if (el) el.scrollIntoView({ behavior: 'smooth' });
 }
 
+// EmailJS contact form
+emailjs.init({ publicKey: 'iJhn-jReBd1OmXEzU' });
+
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+  const submitBtn = contactForm.querySelector('button[type="submit"]');
+  contactForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    var lang = localStorage.getItem('lang') || 'en';
+    submitBtn.textContent = lang === 'nb' ? 'Sender...' : 'Sending...';
+
+    var timeout = new Promise(function (_, reject) {
+      setTimeout(function () { reject(new Error('timeout')); }, 15000);
+    });
+
+    Promise.race([
+      emailjs.sendForm('service_oqselp9', 'template_2mq3f6v', contactForm),
+      timeout
+    ])
+      .then(function () {
+        contactForm.reset();
+        submitBtn.disabled = false;
+        submitBtn.textContent = lang === 'nb' ? 'Send signal' : 'Send Signal';
+        var toast = document.getElementById('toast');
+        toast.classList.add('show');
+        setTimeout(function () { toast.classList.remove('show'); }, 4000);
+      })
+      .catch(function (err) {
+        console.error('EmailJS error:', err);
+        submitBtn.disabled = false;
+        submitBtn.textContent = lang === 'nb' ? 'Send signal' : 'Send Signal';
+        alert(lang === 'nb' ? 'Noe gikk galt. Vennligst prøv igjen.' : 'Something went wrong. Please try again.');
+      });
+  });
+}
+
 // Topbar: show after scrolling past the hero
 const topbar = document.getElementById('topbar');
 const hero = document.getElementById('s0');
