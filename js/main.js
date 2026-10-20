@@ -32,14 +32,23 @@ function scrollToSection(i) {
 // EmailJS contact form
 emailjs.init({ publicKey: 'iJhn-jReBd1OmXEzU' });
 
+// Form strings come from js/i18n.js (loaded after this file, so look them up at submit time)
+function formText(key, fallback) {
+  var lang = 'en';
+  try { lang = localStorage.getItem('lang') || 'en'; } catch (e) { /* storage blocked: keep English */ }
+  if (typeof translations !== 'undefined' && translations[lang] && translations[lang][key] !== undefined) {
+    return translations[lang][key];
+  }
+  return fallback;
+}
+
 const contactForm = document.getElementById('contact-form');
 if (contactForm) {
   const submitBtn = contactForm.querySelector('button[type="submit"]');
   contactForm.addEventListener('submit', function (e) {
     e.preventDefault();
     submitBtn.disabled = true;
-    var lang = localStorage.getItem('lang') || 'en';
-    submitBtn.textContent = lang === 'nb' ? 'Sender...' : 'Sending...';
+    submitBtn.textContent = formText('form.sending', 'Sending...');
 
     var timeout = new Promise(function (_, reject) {
       setTimeout(function () { reject(new Error('timeout')); }, 15000);
@@ -52,7 +61,7 @@ if (contactForm) {
       .then(function () {
         contactForm.reset();
         submitBtn.disabled = false;
-        submitBtn.textContent = lang === 'nb' ? 'Send signal' : 'Send Signal';
+        submitBtn.textContent = formText('form.submit', 'Send Signal');
         var toast = document.getElementById('toast');
         toast.classList.add('show');
         setTimeout(function () { toast.classList.remove('show'); }, 4000);
@@ -60,8 +69,8 @@ if (contactForm) {
       .catch(function (err) {
         console.error('EmailJS error:', err);
         submitBtn.disabled = false;
-        submitBtn.textContent = lang === 'nb' ? 'Send signal' : 'Send Signal';
-        alert(lang === 'nb' ? 'Noe gikk galt. Vennligst prøv igjen.' : 'Something went wrong. Please try again.');
+        submitBtn.textContent = formText('form.submit', 'Send Signal');
+        alert(formText('form.error', 'Something went wrong. Please try again.'));
       });
   });
 }
