@@ -18,7 +18,8 @@
   --phase6: #ef4444;
 }
 
-html { scroll-behavior: smooth; }
+/* The topbar is always pinned (52px), so anchor jumps stop below it */
+html { scroll-behavior: smooth; scroll-padding-top: 52px; }
 
 body {
   background: var(--bg);
@@ -44,6 +45,7 @@ body::before {
 /* HERO */
 .hero {
   min-height: 100vh;
+  padding-top: 52px; /* room for the pinned topbar */
   position: relative;
   overflow: hidden;
   display: flex;
@@ -969,16 +971,6 @@ body::before {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(0,229,255,0.06);
-  transform: translateY(-100%);
-  opacity: 0;
-  transition: transform 0.4s ease, opacity 0.4s ease;
-  pointer-events: none;
-}
-
-.topbar.visible {
-  transform: translateY(0);
-  opacity: 1;
-  pointer-events: auto;
 }
 
 .topbar-name {
